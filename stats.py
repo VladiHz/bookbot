@@ -16,3 +16,29 @@ def count_character_repetition(book_path):
         else:
             letras[char.lower()] = 1
     return letras
+
+def sort_on(items):
+    return items["num"]
+
+def sort_dictionary_by_value(d):
+    list_dict_char = []
+    for item in d:
+        list_dict_char.append({"char":item, "num":d[item]})
+    #print(list_dict_char)
+    list_dict_char.sort(key=sort_on, reverse=True)
+    return list_dict_char
+
+
+def format_report(bookpath, num_words, char_repetition):
+    report = "============ BOOKBOT ============\n"
+    report += f"Analyzing book found at {bookpath}...\n"
+    report += "----------- Word Count ----------\n"
+    report += f"Found {num_words} total words\n"
+    report += "--------- Character Count -------\n"
+    sorted_chars = sort_dictionary_by_value(char_repetition)
+    for d in sorted_chars:
+        if d["char"].isalpha():
+            texto = str(d["char"])
+            report += f"{texto}: {d["num"]}\n"
+    report += "============= END ===============\n"
+    return report
