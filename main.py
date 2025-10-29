@@ -1,9 +1,9 @@
-def get_book_text(book_path):
-    with open(book_path, 'r') as file:
-        return file.read()
+from stats import get_num_words
+from stats import count_character_repetition
     
 if __name__ == "__main__":
-    book_text = get_book_text('books/frankenstein.txt')
-    words = book_text.split()
-    num_words = len(words)
+    bookpath = 'books/frankenstein.txt'
+    num_words = get_num_words(bookpath)
     print(f"Found {num_words} total words")
+    char_repetition = count_character_repetition(bookpath)
+    print(char_repetition)
